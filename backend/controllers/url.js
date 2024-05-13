@@ -5,7 +5,7 @@ const handleGenerateNewShortUrl = async (req, res) => {
   const body = req.body;
   if (!body.url) return res.status(404).json({ err: "URL is required" });
   const shortId = shortid.generate(); // Corrected function call
-  const shortUrl = `${req.protocol}s://${req.get("host")}/${shortId}`;
+  const shortUrl = `${req.get("host")}/${shortId}`;
   console.log(shortUrl)
 
 
