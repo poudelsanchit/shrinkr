@@ -72,7 +72,7 @@ const LandingPage = () => {
   };
   return (
     <>
-      <div className=" h-screen w-full bg-primarybackground  bg-dotted-spacing-4 bg-dotted-[#151515] flex justify-center sm:pt-32 pt-10">
+      <div className=" h-screen w-full bg-primarybackground  bg-dotted-spacing-4 bg-dotted-[#191818] flex justify-center sm:pt-32 pt-10">
         <div className="sm:w-11/12 w-10/12 flex gap-16">
           <div className="sm:w-8/12 flex flex-col sm:gap-12 gap-10">
             <div className=" text-white font-Roboto tracking-tighter w-full text-3xl ">
