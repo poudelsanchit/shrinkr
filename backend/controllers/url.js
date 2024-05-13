@@ -6,25 +6,23 @@ const handleGenerateNewShortUrl = async (req, res) => {
   if (!body.url) return res.status(404).json({ err: "URL is required" });
   const shortId = shortid.generate(); // Corrected function call
   const shortUrl = `${req.get("host")}/${shortId}`;
-  console.log(shortUrl)
-
+  console.log(shortUrl);
 
   await URL.create({
     shortId: shortId,
     redirectUrl: body.url,
     visitedHistory: [],
   });
-
-  return res.json({ shortUrl: shortUrl });
+  return res.render("home", { shortUrl: shortUrl });
 };
 const handleGetRedirectedUrl = async (req, res) => {
   const shortId = req.params.shortId;
   try {
     const urlDocument = await URL.findOneAndUpdate(
       { shortId },
-      { $push: { visitHistory: {timestamp: Date.now() }} }
+      { $push: { visitHistory: { timestamp: Date.now() } } }
     );
-    res.redirect(urlDocument.redirectUrl)
+    return res.redirect(urlDocument.redirectUrl);
   } catch (error) {
     console.error("Error fetching URL:", error);
     return res.status(500).json({ error: "Internal Server Error" });
