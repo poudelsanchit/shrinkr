@@ -3,10 +3,11 @@ import Animation from "../assets/animation.json";
 import Lottie from "lottie-react";
 import { IoCopy } from "react-icons/io5";
 import axios from "axios";
-
 import { toast } from "react-toastify";
 
 const LandingPage = () => {
+    console.log(import.meta.env.VITE_URL)
+
   const [shortUrl, setShortUrl] = useState("");
   const [url, setUrl] = useState("");
   const handleSubmitUrl = async () => {
@@ -20,7 +21,7 @@ const LandingPage = () => {
         throw new Error("Invalid URL format");
       }
 
-      const response = await axios.post("http://localhost:5000/url/", {
+      const response = await axios.post(`${import.meta.env.VITE_URL}`, {
         url: url,
       });
       const data = response.data;
