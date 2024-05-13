@@ -5,7 +5,7 @@ const BottomNavBar = () => {
   return (
     <div className='bg-primarybackground text-white h-10 flex justify-center items-center'>
         <div className='w-11/12 flex justify-evenly'>
-            <a href="" target='_blank'>
+            <a href="https://github.com/poudelsanchit/shrinkr" target='_blank'>
             <FiGithub  className='text-xl cursor-pointer'/>
 
             </a>
