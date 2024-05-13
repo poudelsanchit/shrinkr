@@ -25,6 +25,7 @@ const LandingPage = () => {
         url: url,
       });
       const data = response.data;
+      console.log(data)
       if (data) {
         setShortUrl(data.shortUrl);
         await navigator.clipboard.writeText(data.shortUrl);
@@ -108,7 +109,7 @@ const LandingPage = () => {
                   onClick={handleCopyShortUrl}
                 >
                   <a
-                    className="text-green-600 cursor-pointer text-2xl w-full max-w-sm break-all"
+                    className="text-green-600 cursor-pointer text-2xl w-full max-w-md break-all"
                     target="_blank"
                     href={shortUrl}
                   >
