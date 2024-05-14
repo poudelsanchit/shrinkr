@@ -48,7 +48,7 @@ const UserSignUp = () => {
       return;
     }
     try {
-      const response = await axios.post( `${import.meta.env.VITE_URL}/user/signup`, {
+      const response = await axios.post( `https://shrink.up.railway.app/user/signup`, {
         name: username,
         email: email,
         password: password,
