@@ -1,12 +1,12 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { CiLock, CiUser } from "react-icons/ci";
+import { CiLock } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
+import useAuthStore from "../zustand/store"; // Import the Zustand store for authentication
 
-const InputField = ({ icon, placeholder, value, onchange, type }) => {
-  const navigate = useNavigate();
+const InputField = ({ icon, placeholder, value, onChange, type }) => {
   return (
     <div className="flex items-center h-12 w-full bg-secondaybackground rounded-lg focus:outline-none pl-4 p-2">
       {icon}
@@ -15,37 +15,28 @@ const InputField = ({ icon, placeholder, value, onchange, type }) => {
         className="bg-secondaybackground w-full h-full rounded-lg focus:outline-none pl-4 text-white placeholder:text-[#686c6c]"
         placeholder={placeholder}
         value={value}
-        onChange={onchange}
+        onChange={onChange}
       />
     </div>
   );
 };
 
-const UserSignUp = () => {
+const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const { login } = useAuthStore(); // Access the login function from the Zustand store
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
   const handleSubmit = async () => {
-    // Check if any field is empty
-    if (!email || !password) {
-      toast.error("Please fill in all fields", {
-        position: "bottom-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      return;
-    }
     try {
       const response = await axios.post(`http://localhost:3000/user/login`, {
         email: email,
@@ -53,9 +44,23 @@ const UserSignUp = () => {
       });
       const data = response.data;
 
-      if (data.msg == "User Logged in Successfully") {
-        // User created successfully
+      if (data.msg === "User Logged in Successfully") {
+        // Call the login function from the Zustand store
+        login(email, password);
         toast("Logged in successfully", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        // Redirect to the home page or any other page after successful login
+        navigate("/"); // Change the path to your desired destination
+      } else {
+        toast.error("Invalid email or password", {
           position: "bottom-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -67,6 +72,7 @@ const UserSignUp = () => {
         });
       }
     } catch (error) {
+      console.error("An error occurred:", error);
       toast.error("An error occurred", {
         position: "bottom-right",
         autoClose: 3000,
@@ -94,22 +100,21 @@ const UserSignUp = () => {
             icon={<MdOutlineEmail className="text-xl" />}
             placeholder="you@example.com"
             value={email}
-            onchange={handleEmailChange}
+            onChange={handleEmailChange}
             type={"email"}
           />
           <InputField
             icon={<CiLock className="text-xl" />}
             placeholder="password, at Least 8 characters..."
             value={password}
-            onchange={handlePasswordChange}
+            onChange={handlePasswordChange}
             type={"password"}
           />
           <div className="text-green-600 ml-auto cursor-pointer text-sm">
             Forgot Password?
           </div>
           <div
-            className="bg-green-600 rounded-md flex justify-center items-center py-3 cursor-pointer font-Poppins text-bold hover:bg-green-700
-          "
+            className="bg-green-600 rounded-md flex justify-center items-center py-3 cursor-pointer font-Poppins text-bold hover:bg-green-700"
             onClick={handleSubmit}
           >
             Login
@@ -129,4 +134,4 @@ const UserSignUp = () => {
   );
 };
 
-export default UserSignUp;
+export default UserLogin;
