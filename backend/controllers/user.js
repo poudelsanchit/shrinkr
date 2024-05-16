@@ -24,7 +24,7 @@ const handleUserLogin = async (req, res) => {
   if (!existingUser) {
     return res.status(400).json({ error: "Incorrect email or password" });
   }
-  return res.json({ msg: "User Created Successfully" });
+  return res.status(200).json({ msg: "User Logged in Successfully" });
 };
 
 module.exports = { handleUserSignup, handleUserLogin };

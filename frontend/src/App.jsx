@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import BottomNavBar from "./components/BottomNavBar";
 import { Route, Routes } from "react-router-dom";
 import UserSignUp from "./components/UserSignUp";
+import UserLogin from "./components/UserLogin";
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<UserSignUp />} />
+        <Route path="/login" element={<UserLogin />} />
+
       </Routes>
 
       <ToastContainer
