@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { CiLock, CiUser } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const InputField = ({ icon, placeholder, value, onchange, type }) => {
@@ -48,11 +49,14 @@ const UserSignUp = () => {
       return;
     }
     try {
-      const response = await axios.post( `https://shrink.up.railway.app/user/signup`, {
-        name: username,
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        `https://shrink.up.railway.app/user/signup`,
+        {
+          name: username,
+          email: email,
+          password: password,
+        }
+      );
       const data = response.data;
       console.log(data); // Log the response data
 
@@ -98,9 +102,9 @@ const UserSignUp = () => {
 
   return (
     <div className=" h-screen w-full z-50   bg-primarybackground  bg-dotted-spacing-4 bg-dotted-[#191818] flex justify-center sm:pt-16 pt-10 text-white">
-      <div className="w-4/12 h-[32rem]  shadow-lg rounded-lg p-4 flex flex-col gap-10 items-center">
-        <div className="w-full justify- flex flex-col text-3xl font-medium font-RockSalt tracking-wide gap-2">
-          <div> Welcome To SHRINK</div>
+      <div className="w-5/12 h-[32rem]  shadow-lg rounded-lg p-4 flex flex-col gap-10 items-center">
+        <div className="w-full justify- flex flex-col text-3xl font-medium font-Roboto tracking-normal gap-2">
+          <div>Signup to Shrink</div>
           <div className="text-[#686c6c] font-Roboto text-xs">
             Instantly shorten URLs for efficient sharing.
           </div>
@@ -144,7 +148,9 @@ const UserSignUp = () => {
           </div>
           <div className="font-Poppins text-sm">
             Already have an Account?{" "}
-            <span className="text-green-500 cursor-pointer"> Login</span>
+            <Link to={"/login"}>
+              <span className="text-green-500 cursor-pointer"> Login</span>
+            </Link>
           </div>
         </div>
       </div>
