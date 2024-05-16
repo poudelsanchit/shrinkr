@@ -102,7 +102,7 @@ const UserSignUp = () => {
 
   return (
     <div className=" h-screen w-full z-50   bg-primarybackground  bg-dotted-spacing-4 bg-dotted-[#191818] flex justify-center sm:pt-16 pt-10 text-white">
-      <div className="w-5/12 h-[32rem]  shadow-lg rounded-lg p-4 flex flex-col gap-10 items-center">
+      <div className="md:w-5/12 h-[32rem]  shadow-lg rounded-lg p-4 flex flex-col gap-10 items-center">
         <div className="w-full justify- flex flex-col text-3xl font-medium font-Roboto tracking-normal gap-2">
           <div>Signup to Shrink</div>
           <div className="text-[#686c6c] font-Roboto text-xs">
@@ -131,9 +131,7 @@ const UserSignUp = () => {
             onchange={handlePasswordChange}
             type={"password"}
           />
-          <div className="text-green-600 ml-auto cursor-pointer text-sm">
-            Forgot Password?
-          </div>
+        
           <div
             className="bg-green-600 rounded-md flex justify-center items-center py-3 cursor-pointer font-Poppins text-bold hover:bg-green-700
           "
