@@ -37,7 +37,7 @@ const UserLogin = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/user/login`, {
+      const response = await axios.post(`${import.meta.env.VITE_URL}/user/login`, {
         email: email,
         password: password,
       });
