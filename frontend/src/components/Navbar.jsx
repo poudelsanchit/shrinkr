@@ -6,7 +6,10 @@ import useAuthStore from "../zustand/store";
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuthStore();
   const [isActive, setIsActive] = useState(false);
-  const handleLogOut = () => {};
+  const handleLogOut = () => {
+    logout();
+    setIsActive(false);
+  };
 
   return (
     <div className="bg-primarybackground bg-dotted-spacing-4 bg-dotted-[#191818] text-white flex w-full h-16 sticky top-0 justify-center items-center shadow-md">
@@ -25,7 +28,7 @@ const Navbar = () => {
             {isActive ? (
               <div
                 className="absolute h-auto w-auto top-14 right-14 text-black px-4 py-2 bg-white rounded-md select-none cursor-pointer hover:bg-[#e7e0e0] hover:scale-105 transition-all"
-                onClick={() => logout()}
+                onClick={handleLogOut}
               >
                 Logout
               </div>

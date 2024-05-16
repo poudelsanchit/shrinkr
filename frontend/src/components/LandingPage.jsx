@@ -21,7 +21,7 @@ const LandingPage = () => {
         throw new Error("Invalid URL format");
       }
 
-      const response = await axios.post(`${import.meta.env.VITE_URL}`, {
+      const response = await axios.post(`${import.meta.env.VITE_URL}/url`, {
         url: url,
       });
       const data = response.data;
